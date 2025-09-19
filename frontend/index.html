@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>House Price Predictor</title>
+	<style>
+		:root { --bg: #0b1020; --card: #131a2a; --accent: #4f8cff; --text: #e9eefc; --muted: #9db0d1; }
+		* { box-sizing: border-box; }
+		body { background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; }
+		.header { padding: 24px; border-bottom: 1px solid #1e2a44; }
+		.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+		.card { background: var(--card); border: 1px solid #1e2a44; border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+		h1 { margin: 0; font-size: 22px; }
+		.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+		label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); }
+		input { padding: 10px 12px; border-radius: 8px; border: 1px solid #243252; background: #0e1526; color: var(--text); font-size: 14px; }
+		input:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+		button { padding: 12px 14px; border-radius: 10px; border: 1px solid #2b3b61; background: linear-gradient(180deg, #5b95ff, #3a6fe0); color: white; font-weight: 600; cursor: pointer; }
+		.actions { display: flex; gap: 10px; align-items: center; }
+		.output { font-weight: 700; font-size: 18px; }
+		.badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 999px; border: 1px solid #2b3b61; color: var(--muted); font-size: 12px; }
+		.footer { color: var(--muted); font-size: 12px; margin-top: 10px; }
+		.err { color: #ff8faf; font-weight: 600; }
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div class="container"><h1>House Price Predictor</h1></div>
+	</div>
+	<div class="container">
+		<div class="card">
+			<p>This demo UI was for the previous dataset. For Kaggle House Prices, use POST /predict in Swagger UI with a JSON body of raw features.</p>
+			<div class="actions">
+				<a href="/docs"><button>Open Swagger UI</button></a>
+				<span class="badge">API: <code id="apiBase"></code></span>
+			</div>
+			<div style="height: 10px"></div>
+			<div class="output" id="output"></div>
+			<div class="footer">Endpoint now expects JSON with Kaggle columns; the server applies preprocessing.</div>
+		</div>
+	</div>
+
+	<script>
+		const apiBase = `${location.origin}`;
+		document.getElementById('apiBase').textContent = apiBase;
+		const output = document.getElementById('output');
+		const read = (name) => Number(document.querySelector(`[name="${name}"]`).value);
+		function buildQuery(params) {
+			const usp = new URLSearchParams();
+			Object.entries(params).forEach(([k, v]) => usp.set(k, String(v)));
+			return usp.toString();
+		}
+		// Frontend interaction kept minimal; use Swagger for requests.
+	</script>
+</body>
+</html>

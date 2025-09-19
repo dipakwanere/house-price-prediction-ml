@@ -1,0 +1,46 @@
+# 1) Python bytecode
+__pycache__/
+*.py[cod]
+
+# 2) Virtual environments
+.venv/
+venv/
+
+# 3) OS files
+.DS_Store
+Thumbs.db
+
+# 4) IDE/project settings
+.vscode/
+.idea/
+
+# 5) Logs
+logs/
+*.log
+
+# 6) Build/dist artifacts
+build/
+dist/
+*.egg-info/
+
+# 7) Coverage/testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# 8) Environment/config
+.env
+.env.*
+*.local
+.kaggle/
+.kaggle/
+
+# 9) Data/model artifacts
+artifacts/
+*.joblib
+
+# 10) Notebook checkpoints
+.ipynb_checkpoints/
+
+# 11) Node/Frontend caches
+node_modules/
